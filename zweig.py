@@ -1,7 +1,7 @@
+from robot.libraries.BuiltIn import BuiltIn
 import os
 import fcntl
 from subprocess import Popen, PIPE
-from robot.libraries.BuiltIn import BuiltIn
 from tdd_kiss_core.sshconnection.sshconnection import SshConnection
 
 class ProcessControl(object):
@@ -36,24 +36,11 @@ def setNonBlocking(fd):
     fcntl.fcntl(fd, fcntl.F_SETFL, flags)
 
 def tell_macro_value():
-    blt = BuiltIn()
-    return os.path.dirname(blt.get_variables()['${SUITE_SOURCE}'])
+    builtin = BuiltIn()
+    return os.path.dirname(builtin.get_variables()['${SUITE_SOURCE}'])
 
-def run_command_under_ssh_localhost(cmd):
-    execute_command_by_ssh(cmd)
 
-def execute_command_by_ssh(cmd):
-    ssh_client = SshConnection("127.0.0.1", "abc", "abc", 22, prompt="$ ")
-    try:
-        ssh_client._setup()
-        ret = ssh_client.execute(cmd)
-    except Exception, e:
-        pass
-    finally:
-        ssh_client._teardown()
-        return ret
-
-def zweig_start_cmd(cmd):
+def start_cmd(cmd):
     proc = subprocess.Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=PIPE)
     setNonBlocking(proc.stdout)
     setNonBlocking(proc.stdin)
@@ -69,7 +56,7 @@ def zweig_start_cmd(cmd):
             break
     return proc
 
-def zweig_stop_cmd(proc):
+def stop_cmd(proc):
     proc.stdin.write("\n")
     while True:
         try:
@@ -82,3 +69,13 @@ def zweig_stop_cmd(proc):
         else:
             break
     return 1
+
+def file_log_test():
+    from logger import file_log
+    file_log.debug("I make him an offer that he cannot refuse.")
+    file_log.info("I make him an offer that he cannot refuse.")
+    file_log.error("I make him an offer that he cannot refuse.")
+
+
+if __name__ == '__main__':
+	file_log_test()
