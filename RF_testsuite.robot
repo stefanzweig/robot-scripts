@@ -2,6 +2,7 @@
 Documentation     testsuites and keywords for study of the robotframework.
 Library           DateTime
 Library           Collections
+Resource          zweig_resource.robot
 
 *** Variable ***
 ${message}      You made me an offer that I cannot refuse.
@@ -10,6 +11,7 @@ ${message}      You made me an offer that I cannot refuse.
 Simple Log to Console
     [Documentation]    test case simply prints the message to console.
     Log to Console Demo
+    Log to Console From Zweig Resource
 
 Handle data with Collections
     [Documentation]    some actions related with data structures in library collections.
