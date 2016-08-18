@@ -2,8 +2,7 @@
 Documentation     testsuites and keywords for study of the robotframework.
 Library           DateTime
 Library           Collections
-Resource          zweig_resource.robot
-Resource          stefan_resource.robot
+Resource          facade.robot
 
 *** Variable ***
 ${message}      You made me an offer that I cannot refuse.
