@@ -40,8 +40,8 @@ def start_cmd(cmd):
         try:
             out = proc.stdout.read()
             print("*WARN* "+ out)
-        if "Press Return to stop" in out:
-            return proc
+            if "Press Return to stop" in out:
+                return proc
         except IOError:
             continue
         else:
